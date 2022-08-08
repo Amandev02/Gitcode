@@ -13,6 +13,7 @@ public:
 }
     
     int minCost(int n, vector<int>& cuts) {
+        //bottom up tabulation
         int c = cuts.size();
  cuts.push_back(n);
     cuts.insert(cuts.begin(),0);
