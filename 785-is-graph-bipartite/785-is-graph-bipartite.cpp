@@ -11,9 +11,8 @@ public:
                  if(dfs(it,color^1,graph)==false)
                      return false;
             }
-            else{
-                if(col[node]==col[it]) return false;
-            }
+            else if(color==col[it]) return false;
+            
         }
         
         return true;
