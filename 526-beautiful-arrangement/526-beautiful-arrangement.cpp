@@ -8,8 +8,10 @@ public:
     for(int i =1 ;i<=n;i++){
      int bit = 1<<i;
       if(!(bit&seen)&&(pos%i==0||i%pos==0)){
+          //marking seen through  bits
           seen^=bit;
           countArrangement(n,pos+1);
+          //remarking bits while backtraking
           seen^=bit;
       }
     } 
