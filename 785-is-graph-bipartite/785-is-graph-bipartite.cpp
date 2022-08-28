@@ -8,6 +8,7 @@ public:
         col[node] = color;
         for(auto it: graph[node]){
             if(vis[it]==0){
+                //if in place of false true is written or noting is written its not working
                  if(dfs(it,color^1,graph)==false)
                      return false;
             }
