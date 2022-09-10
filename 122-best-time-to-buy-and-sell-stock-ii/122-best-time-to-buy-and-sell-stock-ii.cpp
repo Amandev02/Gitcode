@@ -17,27 +17,30 @@ public:
     
     ll maxProfit(vector<int>& prices) {
         int n = prices.size();
-        vector<vector<ll>> dp(n+1,vector<ll>(2,-1));
+        // vector<vector<ll>> dp(n+1,vector<ll>(2,-1));
         // memset(dp,-1,sizeof(dp));
         //base case
-        dp[n][0]=dp[n][1]=0;
+        vector<int> ahead(2,0),curr(2,0);
+        ahead[0]=ahead[1]=0;
         
         for(int ind = n-1;ind>=0;ind--){
              ll profit = 0;
             for(int buy = 0;buy<=1 ;buy++){
                 
      if(buy){
-            profit = max((-prices[ind] + dp[ind+1][0]), dp[ind+1][1]);
+            profit = max((-prices[ind] + ahead[0]), ahead[1]);
         }
                 
         else{
-            profit = max(prices[ind] + dp[ind+1][1],dp[ind+1][0]);
+            profit = max(prices[ind] + ahead[1],ahead[0]);
         }
                 
-         dp[ind][buy] = profit;
+         curr[buy] = profit;
                 
             }
+            ahead = curr;
+            
         }
-        return dp[0][1];
+        return ahead[1];
     }
 };
