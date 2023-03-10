@@ -11,18 +11,17 @@ using namespace std;
 class Solution{
     public:
 // arr[j] - arr[i] <= k
-   int func(int i,int j,int k, vector<int>& arr, vector<vector<int>> &dp){
-        if(i>=j) return 0;
-        if(arr[j]-arr[i] <=k) return 0;
-        if(dp[i][j]!=-1) return dp[i][j];
-        return dp[i][j] = 1 + min(func(i+1,j,k,arr,dp),func(i,j-1,k,arr,dp));
-    }
     int removals(vector<int>& arr, int k){
         //Code here
         sort(arr.begin(),arr.end());
         int n = arr.size();
-        vector<vector<int>> dp(n+1,vector<int>(n+1,-1));
-        return func(0,n-1,k,arr,dp);
+        int ans = 0;
+        for(int i = 0,j =0;i<n;i++){
+            int diff = arr[i] - arr[j];
+          while(i>=j and diff>k) diff = arr[i] - arr[++j];
+          ans = max(ans,i-j+1);
+        }
+        return n- ans;
     }
 };
 
