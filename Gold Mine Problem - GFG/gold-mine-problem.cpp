@@ -13,10 +13,7 @@ public:
      //Base condition 
      int n = M.size(),m = M[0].size();
       if ((r== n) || (c == m))  return 0;
-    
-   
        if(dp[r][c]!=-1) return dp[r][c];
-       
        int left_diag =0;
         if(r>0) left_diag = rec(r-1,c+1,dp,M);
        int right = rec(r,c+1,dp,M);
@@ -30,7 +27,6 @@ public:
          vector<vector<int>> dp(n+1,vector<int>(m+1,-1));
          int maxgold = 0;
          for(int i =0;i<n;i++) maxgold = max(maxgold,rec(i,0,dp,M));
-         
          return maxgold;
          
     }
