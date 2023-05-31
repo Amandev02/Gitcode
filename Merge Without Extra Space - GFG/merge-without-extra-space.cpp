@@ -10,20 +10,16 @@ class Solution{
         void merge(long long A[], long long B[], int n, int m) 
         { 
             // code here 
-        long long i = 0,j = 0, k = 0;
-        long long C[m+n];
-	while(i<n && j<m){
-	if(A[i]<B[j]) C[k++] = A[i++];
-	else C[k++] = B[j++];
-	}
-
-	while(i<n) C[k++] = A[i++];
-	while(j<m) C[k++] = B[j++];
- for(int i = 0;i<m+n;i++){
-     
-     if(i<n) A[i] = C[i];
-     else B[i-n] = C[i];
- }
+         int left = n-1, right = 0;
+         while(left>=0 && right <m){
+         if(A[left]>B[right]){
+             swap(A[left],B[right]);
+             left--; right++;
+         }
+         else break;
+         }
+         sort(A,A+n);
+         sort(B,B+m);
         } 
 };
 
