@@ -51,7 +51,7 @@ class Solution
     public:
     struct node *reverse (struct node *head, int k)
     { 
-        // Complete this method
+        // Base Case
         if(head==NULL) return head;
         
         //Step1 -> Reverse first K nodes using iterative approach
