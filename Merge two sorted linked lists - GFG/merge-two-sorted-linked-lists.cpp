@@ -84,24 +84,31 @@ struct Node {
 //Function to merge two sorted linked list.
 Node* sortedMerge(Node* head1, Node* head2)  
 {  
-    // code here
+    // if first Node is NULL return other Node
     if(head1==NULL) return head2;
     if(head2==NULL) return head1;
     
+    //head1 should be small 
     if(head1->data > head2->data) swap(head1,head2);
      
+     //Head of the initial Node 
      Node* res = head1;
+     
     while(head1!=NULL && head2!=NULL){
-        
+        //temp  refer to prev node to the current node
         Node* temp = NULL;
+        
         while(head1!=NULL && head1->data <= head2->data){
             temp = head1;
             head1 = head1->next;
         }
+        //if we encounter a smaller element we break the bond 
+        //and connect it to head2 and swap h1 & h2
         
         temp->next = head2;
         swap(head1,head2);
         
     }
+    //return head to initial node
     return res;
 }  
