@@ -99,6 +99,7 @@ struct Node
 */
 class Solution{
   public:
+  //in O(n) time complexity
     void solve(Node *root,int k,unordered_map<int,int> &mp,int &res,int sum){
         if(root==NULL) return ;
          sum += root->data;
