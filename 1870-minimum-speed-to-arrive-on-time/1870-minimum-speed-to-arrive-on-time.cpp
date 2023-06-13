@@ -1,8 +1,8 @@
 class Solution {
 public:
     bool check(int mid,vector<int>& dist, double hour){
-        double time = 0,i=0;
-        for( ; i<dist.size()-1;i++){
+        double time = 0,i;
+        for(i  =0 ; i<dist.size()-1;i++){
             time += dist[i]/mid;
             if(dist[i]%mid) time++;
         }
