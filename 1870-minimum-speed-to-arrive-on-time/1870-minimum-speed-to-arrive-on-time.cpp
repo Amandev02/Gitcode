@@ -30,7 +30,6 @@ public:
         }
        
         if(lo!=1e9) return lo;
-        cout<<lo;
         return -1;
         
     }
