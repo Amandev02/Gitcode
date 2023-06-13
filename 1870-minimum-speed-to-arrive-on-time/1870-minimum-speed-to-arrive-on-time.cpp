@@ -20,7 +20,7 @@ public:
         
     }
     int minSpeedOnTime(vector<int>& dist, double hour) {
-        if(ceil(hour)<dist.size()) return -1;
+       // if(ceil(hour)<dist.size()) return -1;
         int lo = 1;
         int hi = 1e9;
         while(hi>lo){
@@ -29,7 +29,8 @@ public:
             else lo = mid+1;
         }
        
-        if(lo>0) return lo;
+        if(lo!=1e9) return lo;
+        cout<<lo;
         return -1;
         
     }
