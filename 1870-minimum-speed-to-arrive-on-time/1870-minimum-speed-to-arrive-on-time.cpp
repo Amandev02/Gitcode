@@ -1,22 +1,15 @@
 class Solution {
 public:
     bool check(int mid,vector<int>& dist, double hour){
-        double time = 0;
-        int i = 0;
-        for(;i<dist.size()-1;i++)
-        {
-            time+= dist[i]/mid;
-            if(dist[i]%mid)
-            {
-                time++;
-            }
+        double time = 0,i=0;
+        for( ; i<dist.size()-1;i++){
+            time += dist[i]/mid;
+            if(dist[i]%mid) time++;
         }
         time += 1.0*dist[i]/mid;
-        if(time <= hour)
-        {
-            return true;
-        }
-        return false;
+       
+        return time <= hour;
+       
         
     }
     int minSpeedOnTime(vector<int>& dist, double hour) {
