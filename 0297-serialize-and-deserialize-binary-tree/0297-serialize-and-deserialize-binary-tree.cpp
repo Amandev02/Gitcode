@@ -31,7 +31,7 @@ public:
 
     // Decodes your encoded data to tree.
     TreeNode* deserialize(string data) {
-        cout<<data<<" ";
+     // cout<<data<<" ";
         if(data.size()==0) return nullptr;
         stringstream s(data);
         string str;
