@@ -8,19 +8,36 @@ class Solution
 {
     public:
     //Function to find the maximum money the thief can get.
+    int func(int i,int arr[], vector<int> &dp){
+        if(i<0) return 0;
+        if(i==0) return arr[0];
+        if(i==1) return max(arr[0],arr[1]);
+        if(dp[i]!=-1) return dp[i];
+        int pick = INT_MIN;
+        if(i>1) pick = func(i-2,arr,dp) + arr[i];
+        int notPick = func(i-1,arr,dp);
+        return dp[i] = max(pick,notPick);
+        
+        
+    }
     int FindMaxSum(int arr[], int n)
     {
         // Your code here
-       vector<int> dp(n+1,0);
-       dp[0] = arr[0];
-       dp[1] = max(arr[0],arr[1]);
-       for(int i = 2;i<n;i++){
-           int pick = arr[i] + dp[i-2];
-           int not_pick = dp[i-1];
-           dp[i] = max(dp[i-1],arr[i] + dp[i-2]);
-       }
-       
-       return dp[n-1];
+      vector<int> dp(n+1,-1);
+      
+      int prev2 = 0; 
+      int prev = arr[0];
+      int curr;
+      for(int i = 1;i<n;i++){
+           int pick = prev2 + arr[i];
+          int notPick = prev;
+          curr = max(pick,notPick);
+          prev2 = prev;
+          prev = curr;
+      }
+   
+      return prev;
+      
     }
 };
 
