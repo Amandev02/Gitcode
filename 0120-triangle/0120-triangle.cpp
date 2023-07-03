@@ -14,8 +14,21 @@ public:
         
         int m = triangle.size();
         
-        vector<vector<int>> dp(m+1,vector<int>(m+1,-1));
+        vector<vector<int>> dp(m,vector<int>(m,0));
         
-        return rec(0,0,m,triangle,dp);
+        for(int r = 0;r<m;r++)  dp[m-1][r] = triangle[m-1][r];
+        
+        dp[0][0] = triangle[0][0];
+        for(int i = m-2;i>=0;i--){
+            for(int j = i;j>=0;j--){
+                
+                int up = triangle[i][j] + dp[i+1][j];
+				int up_left = triangle[i][j] + dp[i+1][j+1];
+				dp[i][j] = min(up, up_left);
+                
+            }
+        }
+        
+        return dp[0][0];
     }
 };
