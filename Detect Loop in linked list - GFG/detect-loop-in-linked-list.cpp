@@ -49,16 +49,17 @@ class Solution
     bool detectLoop(Node* head)
     {
         // your code here
-        map<Node*,bool> vis;
-        if(head == NULL) return true;
-        Node* tmp = head;
-        while(tmp!=NULL){
-            //cycle is present 
-             if(vis[tmp]) return 1;
-             vis[tmp] = 1;
-             tmp = tmp -> next;
-        }
-        return 0;
+        if(head==NULL||head->next==NULL) return 0;
+       Node* slow = head;
+       Node* fast = head;
+       
+       while(fast!=NULL){
+           fast = fast->next;
+           if(fast!=NULL) fast = fast->next;
+           slow = slow->next;
+            if(slow==fast) return 1;
+       }
+       return 0;
     }
 };
 
