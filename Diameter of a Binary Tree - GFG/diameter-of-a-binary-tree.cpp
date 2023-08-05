@@ -98,14 +98,14 @@ class Solution {
         if(!root) return 0;
         int lh = findMax(root->left,ans);
         int rh = findMax(root->right,ans);
-         ans = max(ans,lh+rh);
+         ans = max(ans,lh+rh+1);
          return 1+max(lh,rh);
     }
     int diameter(Node* root) {
         // Your code here
         int ans = 0;
       findMax(root,ans);
-      return ans + 1;
+      return ans ;
         
     }
 };
