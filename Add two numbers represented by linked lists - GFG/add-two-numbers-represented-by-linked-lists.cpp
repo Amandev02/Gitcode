@@ -59,8 +59,6 @@ struct Node {
 
 class Solution
 {
-    public:
-    //Function to add two numbers represented by linked list.
     struct Node* reverse(struct Node* head){
         
         if(head==NULL ||head->next==NULL) return head;
@@ -76,42 +74,40 @@ class Solution
         }
         return prev;
     }
-    struct Node* addTwoLists(struct Node* head1, struct Node* head2)
+    
+    public:
+    
+    //Function to add two numbers represented by linked list.
+    struct Node* addTwoLists(struct Node* first, struct Node* second)
     {
         // code here
-        struct Node* dummy = new Node(0);
-        struct Node* temp = dummy;
-        
-        head1 = reverse(head1);
-        head2 = reverse(head2);
-        
-         int carry = 0;
-        while((head1!=NULL||head2!=NULL)||carry){
+        Node* newFirst = reverse(first);
+        Node* newSec = reverse(second);
+        Node* final = NULL;
+        Node* head = final;
+        int carry = 0;
+        while(newFirst!=NULL || newSec!=NULL||carry){
             int ans = 0;
             
-            if(head1!=NULL) {
-            ans += (head1->data);
-            head1 = head1->next;
+            if(newFirst){ 
+                ans += newFirst->data;
+                newFirst = newFirst->next;
+                
+            }
+            if(newSec){
+                ans+= newSec->data;
+                newSec = newSec->next;
+            }
             
-        }
-        
-        if(head2!=NULL) {
-            ans += (head2->data);
-            head2 = head2->next;
+            ans += carry;
+             carry = ans/10;
+            Node* tmp = new Node(ans%10);
+            tmp->next = head;
+            head = tmp;
+            
            
         }
-        
-           ans += carry; //carry can be 0
-           carry = ans/10;
-           struct Node* res = new Node(ans%10);
-           temp->next = res;
-           temp =  temp->next;
-       
-        }
-        
-       struct Node* result = reverse(dummy->next);
-        return result;
-         
+        return head;
     }
 };
 
